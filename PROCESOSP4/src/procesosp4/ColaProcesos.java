@@ -5,11 +5,10 @@
  */
 package procesosp4;
 
-public class PROCESOSP4 {
-       
-    public static void main(String[] args) {
-        Menu menu1 = new Menu();
-        menu1.menu();
-    }
+/**
+ *
+ * @author Brandon
+ */
+public class ColaProcesos {
     
 }
