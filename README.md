@@ -15,6 +15,8 @@ La estructura de un proceso cuenta con 4 elementos básicos:
 - Sección de datos
 - Pila
 - Heap
+
+
 El estado de un proceso depende de la actividad que esté realizando
 - Nuevo: El proceso está siendo creado
 - En ejecución: El cpu ejecuta las instrucciones
