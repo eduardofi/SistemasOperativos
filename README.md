@@ -57,15 +57,19 @@ En la ejecución, el usuario contará con un menú de opciones donde podrá real
 
 EN la memoria se debe detallar, qué procesos están ocupando cuales localidades:
 Localidad proceso
-```
-1 word.exe
-2 word.exe
-..
-64 juego.exe
-65 juego.exe
-66 juego.exe
---- --
-```
+
+
+|   Localidad |     proceso |
+| ----------- | ----------- |
+
+|1 | word.ex|
+| 2 | word.exe|
+|...| |
+|64 |juego.exe|
+|65 |juego.exe|
+|66 |juego.exe|
+|...| |
+
 - Imprimir cola de procesos
   - Esta opción mostrará la lista de los procesos preparados para su ejecución.
   - De cada proceso se debe mostrar su nombre, su id, y las instrucciones pendientes por ejecutar 
@@ -103,6 +107,6 @@ los puntos más importantes del código y con la demostración de la ejecución 
 
 ## *CONCLUSIONES
 
-Escribe las conclusiones de tu práctica en función del cumplimiento de los objetivos.
-Escribe comentarios acerca de qué tanto aportó la elaboración de la práctica en la comprensión del concepto general de procesos.
-También escribe comentarios acerca de tu experiencia en la elaboración del programa
+- Escribe las conclusiones de tu práctica en función del cumplimiento de los objetivos.
+- Escribe comentarios acerca de qué tanto aportó la elaboración de la práctica en la comprensión del concepto general de procesos.
+- También escribe comentarios acerca de tu experiencia en la elaboración del programa
