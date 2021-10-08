@@ -12,7 +12,7 @@ package procesosp4;
 public class PROCESOSP4 {
 
     public static void main(String[] args) {
-        // TODO code application logic here
+        System.out.print("hola mundo");
     }
     
 }
