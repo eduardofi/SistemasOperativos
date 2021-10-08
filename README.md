@@ -61,8 +61,7 @@ Localidad proceso
 
 |   Localidad |     proceso |
 | ----------- | ----------- |
-
-|1 | word.ex|
+|  1          |      Sword.ex|
 | 2 | word.exe|
 |...| |
 |64 |juego.exe|
