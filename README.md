@@ -1,4 +1,3 @@
-# SistemasOperativos
 
 ## SIMULADOR DE PROCESOS Y MEMORIA – PARTE 1
 **Objetivo.**
