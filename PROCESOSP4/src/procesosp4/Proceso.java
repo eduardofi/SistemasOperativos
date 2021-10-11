@@ -4,27 +4,25 @@ package procesosp4;
 public class Proceso {
     String nomProceso = "";
     int cantMemoria = 0;
-    static int memoria = 2048;
     int pid;//ID_proceso
     String estado = "";
+    int numInstrucciones;
     public Proceso(){}
     public Proceso(String nomProceso, int cantMemoria){
         this.nomProceso = nomProceso;
         this.cantMemoria = cantMemoria;
-        this.estado = "nuevo";
+        this.estado = Estado.NUEVO.name();
+        this.numInstrucciones = (int) ((Math.random() * (30-10+1)+10));
     }
-    public boolean verificarAlmacenamiento(int memoria){
-        boolean bandera = false;
-        if(memoria > cantMemoria){
-            bandera = true;
-        }
-        return bandera;
-        }
-    public Proceso crearProceso(String nombre, int cantMemoria, int contador){
-        boolean ban = verificarAlmacenamiento(this.memoria);
+    
+    static public Proceso crearProceso(String nombre, int cantMemoria, int contador, Memoria memoria){
+        
+        boolean ban = memoria.verificarAlmacenamiento(cantMemoria);
+        System.err.println("Bandera: "+ban);
         if(ban == true){
             System.err.println("Creando proceso");
-            this.memoria -=cantMemoria;
+            memoria.ocupadas +=cantMemoria;
+            System.err.println("can. memoria: "+ cantMemoria);
             Proceso p1 = new Proceso(nombre, cantMemoria);
             p1.pid = contador;
             return p1;
@@ -32,6 +30,12 @@ public class Proceso {
             System.err.println("Memoria llena, proceso "+ nombre + "no creado, es necesario ejecutar o matar otros procesos.");
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre" + this.nomProceso + " PID: "+ this.pid +" Estado " 
+                + this.estado + " Cant. Memoria " + this.cantMemoria + " Num. instrucciones: "+ this.numInstrucciones;
     }
     
 }
