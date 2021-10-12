@@ -6,9 +6,10 @@ import java.util.Scanner;
 public class Menu {
     int contador = 1;
     Memoria memory;
-    
-    public Menu(Memoria m){
+    ColaProcesos colap;
+    public Menu(Memoria m, ColaProcesos colap){
         memory = m;
+        this.colap = colap;
     }
     
     public void menu(){
@@ -38,27 +39,37 @@ public class Menu {
                             contador++, memory);
                     System.out.println(p);
                     System.out.println(memory);
+                    System.out.println("Agregando a cola de procesos...");
+                    colap.insertar(p);
+                    p.estado = Estado.PREPARADO.name();
+                    System.out.println(p);
                     break;                        
                 case 2 :
-                    //
+                   colap.tamañoCola();
                    break; // break es opcional
                 case 3 :
-                   // Declaraciones
+                   colap.MostrarContenido();
                    break; // break es opcional
                 case 4 :
-                   // Declaraciones
+                    System.out.println(colap.getProcesoActual()); 
                    break; // break es opcional
                 case 5 :
-                   // Declaraciones
+                   colap.pasarSigProceso();
                    break; // break es opcional
                 case 6 :
-                   // Declaraciones
+                    Proceso p1 = colap.eliminarProceso();
+                    System.out.println(p1);
+                   
                     break; // break es opcional
                 case 7 :
-                   // Declaraciones
+                   colap.ejecutarProcesoAct();
                    break; // break es opcional
                 case 8 :
                    System.out.println("Adios!");
+                   System.out.println("Cola de procesos");
+                   colap.MostrarContenido();
+                   System.out.println("Cola de procesos eliminados");
+                   colap.listaProcesosEliminados();
                    bandera = false;
                    break; // break es opcional
                 default:

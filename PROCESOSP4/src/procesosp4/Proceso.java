@@ -7,6 +7,8 @@ public class Proceso {
     int pid;//ID_proceso
     String estado = "";
     int numInstrucciones;
+    int numInstruccionesEjecutadas=0;
+    String updateStatus;
     public Proceso(){}
     public Proceso(String nomProceso, int cantMemoria){
         this.nomProceso = nomProceso;
@@ -26,7 +28,8 @@ public class Proceso {
             return p1;
         }else{
             System.err.println("Memoria llena, proceso "+ nombre 
-                    + "no creado, es necesario ejecutar o matar otros procesos.");
+                    + "no creado, es necesario ejecutar o matar otros"
+                    + " procesos.");
         }
         return null;
     }
@@ -34,8 +37,11 @@ public class Proceso {
     @Override
     public String toString() {
         return "Proceso - Nombre: " + this.nomProceso + " PID: "+ this.pid 
-                +" Estado " + this.estado + " Cant. Memoria " + this.cantMemoria 
-                + " Num. instrucciones: "+ this.numInstrucciones;
+                +" Estado " + this.estado + " Cant. Memoria "
+                + this.cantMemoria 
+                + " Num. instrucciones: "+ this.numInstrucciones 
+                + " Nun. instrucciones ejecutadas: "
+                + this.numInstruccionesEjecutadas;
     }
     
 }
