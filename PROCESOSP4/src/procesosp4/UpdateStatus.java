@@ -5,7 +5,6 @@
  */
 package procesosp4;
 
-import org.omg.CORBA.ACTIVITY_COMPLETED;
 
 public enum UpdateStatus {
     ACTIVO, INACTIVO

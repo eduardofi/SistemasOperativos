@@ -6,7 +6,6 @@
 package procesosp4;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ColaProcesos {
     private NodoProceso inicioCola, finalCola;
@@ -20,11 +19,7 @@ public class ColaProcesos {
     }
      //Método para saber si la cola esta vacia
     public boolean colaVacia(){
-        if (inicioCola == null) {
-            return true;
-        } else {
-            return false;
-        }
+        return inicioCola == null;
     }
     //Método para insertar a la cola
     public void insertar(Proceso proceso){
@@ -68,7 +63,9 @@ public class ColaProcesos {
     public void pasarSigProceso(){
         if (inicioCola.siguiente != null) {
             NodoProceso almacen1 = inicioCola;
+            almacen1.proceso.updateStatus = UpdateStatus.INACTIVO.name();
             inicioCola = almacen1.siguiente;
+            inicioCola.proceso.updateStatus = UpdateStatus.ACTIVO.name();
             almacen1.siguiente = null;
             finalCola.siguiente = almacen1;
             finalCola = almacen1;
@@ -83,6 +80,7 @@ public class ColaProcesos {
             pasarSigProceso();
         }else{
             Proceso p = eliminarProceso();
+            p.numInstruccionesEjecutadas = p.numInstrucciones;
             System.out.println(p);
             listaProcesos.add(p);
                         
@@ -99,7 +97,9 @@ public class ColaProcesos {
                 finalCola = null;
             } else {
                 inicioCola = inicioCola.siguiente;
+                inicioCola.proceso.updateStatus = UpdateStatus.ACTIVO.name();
             }
+            tamCola--;
             p.estado = Estado.TERMINADO.name();
             return p;
         } else {
