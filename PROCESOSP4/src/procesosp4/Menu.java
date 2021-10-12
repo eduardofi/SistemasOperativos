@@ -66,9 +66,9 @@ public class Menu {
                    break; // break es opcional
                 case 8 :
                    System.out.println("Adios!");
-                   System.out.println("Cola de procesos");
+                   System.out.println("\t Cola de procesos");
                    colap.MostrarContenido();
-                   System.out.println("Cola de procesos eliminados");
+                   System.out.println("\t Cola de procesos eliminados");
                    colap.listaProcesosEliminados();
                    bandera = false;
                    break; // break es opcional

@@ -11,7 +11,7 @@ public class ColaProcesos {
     private NodoProceso inicioCola, finalCola;
     String Cola = "";
     int tamCola = 0;
-    ArrayList<Proceso> listaProcesos = new ArrayList<>();
+    ArrayList<Proceso> listaProcesosEliminados = new ArrayList<>();
     
     public ColaProcesos(){
         inicioCola = null;
@@ -27,7 +27,7 @@ public class ColaProcesos {
         nuevo_nodo.proceso = proceso;
         nuevo_nodo.siguiente = null;
         
-        if (this.colaVacia()) {
+        if (colaVacia()) {
             inicioCola = nuevo_nodo;
             finalCola = nuevo_nodo;
             nuevo_nodo.proceso.updateStatus = UpdateStatus.ACTIVO.name();
@@ -44,10 +44,11 @@ public class ColaProcesos {
     public void tamañoCola (){
          System.out.println("Numero de procesos en la cola: " + tamCola); 
     }
-        //Método para mostrar el contenido de la cola
+    
+    //Método para mostrar el contenido de la cola
     public void MostrarContenido(){
-        if(this.colaVacia()){
-            System.out.println("Cola de procesos vacía, ingrese un proceso");
+        if(colaVacia()){
+            System.out.println("Cola de procesos vacía :(");
         }else{
             NodoProceso recorrido = inicioCola;
 
@@ -73,17 +74,20 @@ public class ColaProcesos {
     }
     
     public void ejecutarProcesoAct(){
-        int instruccionesFaltantes = inicioCola.proceso.numInstrucciones -
-                inicioCola.proceso.numInstruccionesEjecutadas;
-        if(instruccionesFaltantes > 5){
-            inicioCola.proceso.numInstruccionesEjecutadas+=5;
-            pasarSigProceso();
+        if(colaVacia()){
+           System.out.println("Cola de procesos vacía :("); 
         }else{
-            Proceso p = eliminarProceso();
-            p.numInstruccionesEjecutadas = p.numInstrucciones;
-            System.out.println(p);
-            listaProcesos.add(p);
-                        
+            int instruccionesFaltantes = inicioCola.proceso.numInstrucciones -
+                    inicioCola.proceso.numInstruccionesEjecutadas;
+            if(instruccionesFaltantes > 5){
+                inicioCola.proceso.numInstruccionesEjecutadas+=5;
+                System.out.println(inicioCola.proceso);
+                pasarSigProceso();
+            }else{
+                Proceso p = eliminarProceso();
+                p.numInstruccionesEjecutadas = p.numInstrucciones;
+                System.out.println(p);
+            }
         }
     }
     
@@ -101,6 +105,7 @@ public class ColaProcesos {
             }
             tamCola--;
             p.estado = Estado.TERMINADO.name();
+            listaProcesosEliminados.add(p);
             return p;
         } else {
             return null;
@@ -108,7 +113,7 @@ public class ColaProcesos {
     }
     
    public void listaProcesosEliminados(){
-       for(Proceso p: listaProcesos){
+       for(Proceso p: listaProcesosEliminados){
            System.out.println(p);
        }
    }
