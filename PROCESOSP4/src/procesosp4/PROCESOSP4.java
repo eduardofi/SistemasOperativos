@@ -8,9 +8,7 @@ package procesosp4;
 public class PROCESOSP4 {
        
     public static void main(String[] args) {
-        
         Memoria memoria = new Memoria(2048);
-        System.err.println("memoria main: "+memoria);
         Menu menu1 = new Menu(memoria);
         menu1.menu();
     }
