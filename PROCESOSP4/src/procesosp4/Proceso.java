@@ -19,7 +19,9 @@ public class Proceso {
     
     static public Proceso crearProceso(String nombre, int cantMemoria, 
             int contador, Memoria memoria){
-        boolean ban = memoria.verificarAlmacenamiento(cantMemoria);
+        //boolean ban = memoria.verificarAlmacenamiento(cantMemoria);
+        System.out.println("cant. memoria: "+cantMemoria);
+        boolean ban = memoria.firstFit(cantMemoria, contador);
         if(ban == true){
             System.out.println("Creando proceso ...");
             memoria.ocupadas +=cantMemoria;

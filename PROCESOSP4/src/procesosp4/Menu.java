@@ -40,12 +40,18 @@ public class Menu {
                     System.out.println(p);
                     System.out.println(memory);
                     System.out.println("Agregando a cola de procesos...");
-                    colap.insertar(p);
-                    p.estado = Estado.PREPARADO.name();
-                    System.out.println(p);
+                    try {
+                        colap.insertar(p);
+                        p.estado = Estado.PREPARADO.name();
+                        System.out.println(p);
+                    } catch (Exception e) {
+                    }
                     break;                        
                 case 2 :
                    colap.tamañoCola();
+                   colap.listaProcesosEliminados();
+                   memory.tablaLocalidades();
+                   
                    break; // break es opcional
                 case 3 :
                    colap.MostrarContenido();

@@ -22,22 +22,26 @@ public class ColaProcesos {
         return inicioCola == null;
     }
     //Método para insertar a la cola
-    public void insertar(Proceso proceso){
-        NodoProceso nuevo_nodo = new NodoProceso();
-        nuevo_nodo.proceso = proceso;
-        nuevo_nodo.siguiente = null;
-        
-        if (colaVacia()) {
-            inicioCola = nuevo_nodo;
-            finalCola = nuevo_nodo;
-            nuevo_nodo.proceso.updateStatus = UpdateStatus.ACTIVO.name();
-        } else {
-            finalCola.siguiente = nuevo_nodo;
-            finalCola = nuevo_nodo;
-            nuevo_nodo.proceso.updateStatus = UpdateStatus.INACTIVO.name();
+    public void insertar(Proceso proceso) {
+        System.out.println(proceso != null);
+        if (proceso != null) {
+            NodoProceso nuevo_nodo = new NodoProceso();
+            nuevo_nodo.proceso = proceso;
+            nuevo_nodo.siguiente = null;
+
+            if (colaVacia()) {
+                inicioCola = nuevo_nodo;
+                finalCola = nuevo_nodo;
+                nuevo_nodo.proceso.updateStatus = UpdateStatus.ACTIVO.name();
+            } else {
+                finalCola.siguiente = nuevo_nodo;
+                finalCola = nuevo_nodo;
+                nuevo_nodo.proceso.updateStatus = UpdateStatus.INACTIVO.name();
+            }
+            tamCola++;
         }
-        tamCola++;
     }
+       
     public Proceso getProcesoActual(){
         return inicioCola.proceso;
     }
