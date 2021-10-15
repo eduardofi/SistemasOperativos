@@ -9,6 +9,7 @@ public class Proceso {
     int numInstrucciones;
     int numInstruccionesEjecutadas=0;
     String updateStatus;
+    int base;
     public Proceso(){}
     public Proceso(String nomProceso, int cantMemoria){
         this.nomProceso = nomProceso;
@@ -18,14 +19,14 @@ public class Proceso {
     }
     
     static public Proceso crearProceso(String nombre, int cantMemoria, 
-            int contador, Memoria memoria){
-        //boolean ban = memoria.verificarAlmacenamiento(cantMemoria);
+        int contador, Memoria memoria){
         System.out.println("cant. memoria: "+cantMemoria);
-        boolean ban = memoria.firstFit(cantMemoria, contador);
-        if(ban == true){
+        int ban = memoria.firstFit(cantMemoria, contador);
+        if(ban != -1){
             System.out.println("Creando proceso ...");
             memoria.ocupadas +=cantMemoria;
             Proceso p1 = new Proceso(nombre, cantMemoria);
+            p1.base=ban;
             p1.pid = contador;
             return p1;
         }else{
@@ -43,7 +44,7 @@ public class Proceso {
                 + this.cantMemoria 
                 + " Num. instrucciones: "+ this.numInstrucciones 
                 + " Nun. instrucciones ejecutadas: "
-                + this.numInstruccionesEjecutadas;
+                + this.numInstruccionesEjecutadas + " Base: " +base;
     }
     
 }

@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package procesosp4;
 
 import java.util.ArrayList;
@@ -77,7 +73,7 @@ public class ColaProcesos {
         }        
     }
     
-    public void ejecutarProcesoAct(){
+    public void ejecutarProcesoAct(Memoria memory){
         if(colaVacia()){
            System.out.println("Cola de procesos vacía :("); 
         }else{
@@ -88,7 +84,7 @@ public class ColaProcesos {
                 System.out.println(inicioCola.proceso);
                 pasarSigProceso();
             }else{
-                Proceso p = eliminarProceso();
+                Proceso p = eliminarProceso(memory);
                 p.numInstruccionesEjecutadas = p.numInstrucciones;
                 System.out.println(p);
             }
@@ -96,7 +92,7 @@ public class ColaProcesos {
     }
     
     //Método para eliminar proceso terminado de la cola
-    public Proceso eliminarProceso(){
+    public Proceso eliminarProceso(Memoria memory){
         if (!colaVacia()) {
             Proceso p = inicioCola.proceso;
             
@@ -107,9 +103,12 @@ public class ColaProcesos {
                 inicioCola = inicioCola.siguiente;
                 inicioCola.proceso.updateStatus = UpdateStatus.ACTIVO.name();
             }
+             memory.liberarMemoria(p.base, p.cantMemoria);
             tamCola--;
             p.estado = Estado.TERMINADO.name();
+            p.base = -1;
             listaProcesosEliminados.add(p);
+            memory.ocupadas -= p.cantMemoria;
             return p;
         } else {
             return null;

@@ -37,46 +37,53 @@ public class Memoria {
         return localidadesVacias;
         }
     
-    public boolean firstFit(int cantMemoria, int pid) {
-        boolean bandera = false;
-        int inicio = 0;
-        while (inicio < numLocalidades) {
-            if (localidades[inicio] == 0) {
-                int localidadesVacias = calcVacios(inicio);
-                if (localidadesVacias >= cantMemoria) {
-                    System.out.println("Base: " +inicio +" Cant. memoria" 
-                            + cantMemoria +" Limite"
-                            + (inicio + cantMemoria));
-                    for (int k = inicio; k <inicio + cantMemoria; k++) {
-                        localidades[k] = pid;
-                        
+    public int firstFit(int cantMemoria, int pid) {
+        int bandera = -1;
+        if (verificarAlmacenamiento(cantMemoria)) {
+            int inicio = 0;
+            while (inicio < numLocalidades) {
+                if (localidades[inicio] == 0) {
+                    int localidadesVacias = calcVacios(inicio);
+                    if (localidadesVacias >= cantMemoria) {
+                        System.out.println("Base: " + inicio + " Cant. memoria"
+                                + cantMemoria + " Limite"
+                                + (inicio + cantMemoria));
+                        ponerMemoria(inicio, cantMemoria, pid);
+                        bandera = inicio;
+                        return bandera;
+                    } else {
+
+                        inicio += (localidadesVacias + 2);
                     }
-                    bandera = true;
-                    return bandera;
-                }else{
-                    
-                    inicio += (localidadesVacias+2);
-                    //inicio++;
+                } else {
+                    inicio++;
                 }
-            }else{
-                inicio++;
             }
         }
+        
+        System.out.println(bandera);
         return bandera;
     }
-    
+    public void ponerMemoria(int base, int limite, int agregarValor) {
+        for (int k = base; k < base + limite; k++) {
+            localidades[k] = agregarValor;
+        }
+    }
+    public void liberarMemoria(int base, int limite) {
+        ponerMemoria(base, limite, 0);
+    }
     public int getLocalDesoc(){
         return this.numLocalidades - this.ocupadas;
     }
     
-    /*public boolean verificarAlmacenamiento(int cantMemoria){
+    public boolean verificarAlmacenamiento(int cantMemoria){
         boolean bandera = false;
         int deso = this.getLocalDesoc();
-        if( deso > cantMemoria){            
+        if( deso >= cantMemoria){            
             bandera = true;
         }
         return bandera;
-    }*/
+    }
     
     @Override
     public String toString() {

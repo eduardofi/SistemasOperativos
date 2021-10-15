@@ -11,7 +11,6 @@ public class PROCESOSP4 {
         Memoria memoria = new Memoria(2048); 
         ColaProcesos colaP = new ColaProcesos();
         Menu menu1 = new Menu(memoria, colaP);
-       
         menu1.menu();
     }
     

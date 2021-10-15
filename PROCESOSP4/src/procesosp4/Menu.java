@@ -50,6 +50,7 @@ public class Menu {
                 case 2 :
                    colap.tamañoCola();
                    colap.listaProcesosEliminados();
+                   colap.MostrarContenido();
                    memory.tablaLocalidades();
                    
                    break; // break es opcional
@@ -63,12 +64,12 @@ public class Menu {
                    colap.pasarSigProceso();
                    break; // break es opcional
                 case 6 :
-                    Proceso p1 = colap.eliminarProceso();
+                    Proceso p1 = colap.eliminarProceso(memory);
                     System.out.println(p1);
                    
                     break; // break es opcional
                 case 7 :
-                   colap.ejecutarProcesoAct();
+                   colap.ejecutarProcesoAct(memory);
                    break; // break es opcional
                 case 8 :
                    System.out.println("Adios!");
