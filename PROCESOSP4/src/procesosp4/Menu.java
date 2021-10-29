@@ -20,7 +20,7 @@ public class Menu {
             System.out.println("2. Ver estado actual");
             System.out.println("3. Imprimir cola de procesos");
             System.out.println("4. Ver proceso actual");
-            System.out.println("5. Pasar al proceso siguiente");
+            System.out.println("5. Pasar al proceso siguinte");
             System.out.println("6. Matar proceso");
             System.out.println("7. Ejecutar proceso");
             System.out.println("8. Salir");
