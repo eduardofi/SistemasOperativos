@@ -8,10 +8,12 @@ package procesosp4;
 public class PROCESOSP4 {
        
     public static void main(String[] args) {
-        Memoria memoria = new Memoria(2048); 
+        Memoria memoria = new Memoria(1024); 
         ColaProcesos colaP = new ColaProcesos();
-        Menu menu1 = new Menu(memoria, colaP);
+        ListaLigada ligada = new ListaLigada();
+        Menu menu1 = new Menu(memoria, colaP, ligada);
         menu1.menu();
+        
     }
     
 }

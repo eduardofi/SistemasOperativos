@@ -37,6 +37,18 @@ public class Memoria {
         return localidadesVacias;
         }
     
+        public int calcContenido(int inicio) {
+        int localidadesProceso = 0;
+        for (int j = inicio; j < numLocalidades; j++) {
+            if (localidades[j] == localidades[inicio]) {
+                localidadesProceso++;
+            } else {
+                break;
+            }
+        }
+        return localidadesProceso;
+        }
+    
     public int firstFit(int cantMemoria, int pid) {
         int bandera = -1;
         if (verificarAlmacenamiento(cantMemoria)) {

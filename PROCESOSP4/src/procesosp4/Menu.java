@@ -7,9 +7,11 @@ public class Menu {
     int contador = 1;
     Memoria memory;
     ColaProcesos colap;
-    public Menu(Memoria m, ColaProcesos colap){
+    ListaLigada ligada;
+    public Menu(Memoria m, ColaProcesos colap, ListaLigada ligada){
         memory = m;
         this.colap = colap;
+        this.ligada=ligada;
     }
     
     public void menu(){
@@ -17,21 +19,24 @@ public class Menu {
         do{   
             System.out.println(" \t MENU ");
             System.out.println("1. Crear proceso");
-            System.out.println("2. Ver estado actual");
+            System.out.println("2. Ver estado de los procesos");
             System.out.println("3. Imprimir cola de procesos");
             System.out.println("4. Ver proceso actual");
-            System.out.println("5. Pasar al proceso siguinte");
+            System.out.println("5. Pasar al proceso siguiente");
             System.out.println("6. Matar proceso");
             System.out.println("7. Ejecutar proceso");
-            System.out.println("8. Salir");
+            System.out.println("8. Ver estado de la memoria");
+            System.out.println("9. Salir");
             System.out.print("Elige una opción: ");
             int op = new Scanner(System.in).nextInt();
             System.out.println("**********************************************");
             System.out.println("Ha elegido la opcion: "+op);
             switch(op){
                 case 1 :
-                    int potenciaM = (int) ((Math.random() *(9-6+1) +6));
-                    int cantidadM = (int) Math.pow(2, potenciaM);
+                    //int potenciaM = (int) ((Math.random() *(9-6+1) +6));
+                    //int cantidadM = (int) Math.pow(2, potenciaM);
+                    System.out.println(" Elige el tamaño del proceso: 64, 128, 256, 512");
+                    int cantidadM = new Scanner(System.in).nextInt();
                     System.out.print("Escriba el nombre del Proceso: ");
                     String nombreProceso = new Scanner(System.in).nextLine();
                     System.out.println(memory);
@@ -51,7 +56,8 @@ public class Menu {
                    colap.tamañoCola();
                    colap.listaProcesosEliminados();
                    colap.MostrarContenido();
-                   memory.tablaLocalidades();
+                   //memory.tablaLocalidades();
+                   
                    
                    break; // break es opcional
                 case 3 :
@@ -71,7 +77,11 @@ public class Menu {
                 case 7 :
                    colap.ejecutarProcesoAct(memory);
                    break; // break es opcional
-                case 8 :
+                  case 8:
+                    ligada.actualizarListaLigada(memory);
+                    ligada.MostrarContenido();
+                    break;
+                case 9 :
                    System.out.println("Adios!");
                    System.out.println("\t Cola de procesos");
                    colap.MostrarContenido();
