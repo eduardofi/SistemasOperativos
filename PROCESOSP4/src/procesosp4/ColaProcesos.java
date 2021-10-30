@@ -122,16 +122,16 @@ public class ColaProcesos {
    }
    
    public void actualizaBaseProceso(int pid, int desplazamiento){
-       if(colaVacia()){
+        if(colaVacia()){
             System.out.println("Cola de procesos vacía :(");
         }else{
             NodoProceso recorrido = inicioCola;
             while (recorrido != null) {
-                System.out.println("HOLA EORRRR");
                 if(pid==recorrido.proceso.pid){
                     recorrido.proceso.base-=desplazamiento;
                     break;
                 }
+                recorrido = recorrido.siguiente;
             }
         }
    }

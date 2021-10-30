@@ -36,9 +36,9 @@ public class Menu {
                 case 1 :
                     //int potenciaM = (int) ((Math.random() *(9-6+1) +6));
                     //int cantidadM = (int) Math.pow(2, potenciaM);
-                    System.out.println(" Elige el tamaño del proceso: 64, 128, 256, 512");
+                    System.out.print("Elige el tamaño del proceso (64, 128, 256, 512): ");
                     int cantidadM = new Scanner(System.in).nextInt();
-                    System.out.print("Escriba el nombre del Proceso: ");
+                    System.out.print("Escriba el nombre del proceso: ");
                     String nombreProceso = new Scanner(System.in).nextLine();
                     System.out.println(memory);
                     Proceso p = Proceso.crearProceso(nombreProceso, cantidadM,
@@ -55,8 +55,9 @@ public class Menu {
                     break;                        
                 case 2 :
                    colap.tamañoCola();
-                   colap.listaProcesosEliminados();
                    colap.MostrarContenido();
+                   colap.listaProcesosEliminados();
+
                    //memory.tablaLocalidades();
                    
                    

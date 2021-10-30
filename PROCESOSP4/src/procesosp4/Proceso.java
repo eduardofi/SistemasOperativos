@@ -4,7 +4,7 @@ package procesosp4;
 public class Proceso {
     String nomProceso = "";
     int cantMemoria = 0;
-    int pid;//ID_proceso
+    int pid;
     String estado = "";
     int numInstrucciones;
     int numInstruccionesEjecutadas=0;
@@ -30,7 +30,7 @@ public class Proceso {
             p1.pid = contador;
             return p1;
         }else{
-            System.err.println("Memoria llena, proceso "+ nombre 
+            System.out.println("Memoria llena, proceso "+ nombre 
                     + "no creado, es necesario ejecutar o matar otros"
                     + " procesos.");
         }
