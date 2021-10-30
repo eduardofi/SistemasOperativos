@@ -96,7 +96,58 @@ public class Memoria {
         }
         return bandera;
     }
+    public void quitarHueco(ColaProcesos cola) {
+        int limite = 0;
+        int base = 0;
+        for (int i = 0; i < numLocalidades; i++) {
+            if (localidades[i] == 0) {
+                limite = calcVacios(i);
+                base = i;
+                break;
+            }
+        }
+        if ((base + limite)  < numLocalidades) {
+            for (int j = base; j < numLocalidades; j++) {
+                if (j + limite < numLocalidades) {
+                    localidades[j] = localidades[j + limite];
+                    if ((localidades[j + limite] != 0) && (localidades[j + limite] != localidades[j + limite + 1])) {
+                        int pid = localidades[j + limite];
+                        cola.actualizaBaseProceso(pid, limite);
+                    }
+                }
+            }
+            for (int j = numLocalidades - limite; j < numLocalidades; j++) {
+                localidades[j] = 0;
+            }
+        }
+        
+
+    }
     
+    public void desfragmentarMemoria(ColaProcesos cola){
+        while(validarFragmentacion()){
+            quitarHueco(cola);
+        }
+    }
+    
+    public boolean validarFragmentacion(){
+        int limite = 0;
+        int base = 0;
+        for(int i=0;i<numLocalidades;i++){
+            if(localidades[i]==0){
+                limite = calcVacios(i);
+                base = i;
+                break;
+            }
+         }
+         
+        if ( (base + limite)  < numLocalidades) {
+            return true;
+        } else {
+            return false;
+        }
+    }   
+
     @Override
     public String toString() {
         return "Memoria - Num. localidades " + this.numLocalidades 

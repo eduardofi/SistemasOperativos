@@ -19,11 +19,11 @@ public class ListaLigada {
         while (inicio<memoria.numLocalidades) {
             if(array[inicio]!=0){
                 int limite = memoria.calcContenido(inicio);
-                insertarNodo('P', inicio, limite);
+                insertarNodo("P"+ array[inicio], inicio, limite);
                 inicio +=limite;
             }else{
                  int limite = memoria.calcVacios(inicio);
-                 insertarNodo('H', inicio, limite);
+                 insertarNodo("H", inicio, limite);
                 inicio+=limite;
             }
         }
@@ -33,7 +33,7 @@ public class ListaLigada {
         return inicioLista == null;
     }
          //Método para insertar a la cola
-    public void insertarNodo(char P_H, int base, int limite){
+    public void insertarNodo(String P_H, int base, int limite){
         NodoLista nuevo_nodo = new NodoLista(P_H,base, limite);
         nuevo_nodo.siguiente = null;
         
@@ -41,14 +41,16 @@ public class ListaLigada {
             inicioLista = nuevo_nodo;
             finLista = nuevo_nodo;
         } else {
-            finLista.siguiente = nuevo_nodo;
-            finLista  = nuevo_nodo;
+            //finLista.siguiente = nuevo_nodo;
+            inicioLista.siguiente = nuevo_nodo;
+            inicioLista  = nuevo_nodo;
+            //finLista  = nuevo_nodo;
         }
     }
         //Método para mostrar el contenido de la Lista ligada
     public void MostrarContenido(){
         
-            NodoLista recorrido = inicioLista;
+            NodoLista recorrido = finLista;
 
             while (recorrido != null) {
                 Lista += recorrido.toString();

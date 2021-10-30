@@ -26,7 +26,8 @@ public class Menu {
             System.out.println("6. Matar proceso");
             System.out.println("7. Ejecutar proceso");
             System.out.println("8. Ver estado de la memoria");
-            System.out.println("9. Salir");
+            System.out.println("9. Desfragmentar memoria");
+            System.out.println("10. Salir");
             System.out.print("Elige una opción: ");
             int op = new Scanner(System.in).nextInt();
             System.out.println("**********************************************");
@@ -81,7 +82,12 @@ public class Menu {
                     ligada.actualizarListaLigada(memory);
                     ligada.MostrarContenido();
                     break;
-                case 9 :
+                case 9:
+                    memory.desfragmentarMemoria(colap);
+                    ligada.actualizarListaLigada(memory);
+                    ligada.MostrarContenido();
+                    break;
+                case 10 :
                    System.out.println("Adios!");
                    System.out.println("\t Cola de procesos");
                    colap.MostrarContenido();
