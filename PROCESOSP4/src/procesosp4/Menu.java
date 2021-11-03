@@ -67,6 +67,7 @@ public class Menu {
                    break; // break es opcional
                 case 4 :
                     System.out.println(colap.getProcesoActual()); 
+                    colap.getProcesoActual().mostrarTablaPaginas();
                    break; // break es opcional
                 case 5 :
                    colap.pasarSigProceso();
@@ -82,6 +83,7 @@ public class Menu {
                   case 8:
                     ligada.actualizarListaLigada(memory);
                     ligada.MostrarContenido();
+                    memory.mostraTablaMarcos();
                     break;
                 case 9:
                     memory.desfragmentarMemoria(colap);

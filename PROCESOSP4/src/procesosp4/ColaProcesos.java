@@ -103,7 +103,7 @@ public class ColaProcesos {
                 inicioCola = inicioCola.siguiente;
                 inicioCola.proceso.updateStatus = UpdateStatus.ACTIVO.name();
             }
-             memory.liberarMemoria(p.base, p.cantMemoria);
+             memory.liberarMemoriaMarcos(p);
             tamCola--;
             p.estado = Estado.TERMINADO.name();
             p.base = -1;

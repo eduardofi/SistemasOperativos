@@ -5,12 +5,30 @@ public class Memoria {
     int []localidades;
     int numLocalidades;
     int ocupadas = 0;
-    
+    Marco tablaMarco [];
+    int marcosDisponibles = 0;
     public Memoria(int numLocalidades){
         this.numLocalidades = numLocalidades;
         this.localidades = new int[numLocalidades];
+        iniciarTablaMarcos();
+        marcosDisponibles = 64;
     }
-    
+    public void iniciarTablaMarcos(){
+        int inicioM = 0;
+        this.tablaMarco = new Marco[numLocalidades/16];
+        for(int j=0;j<64;j++) { 
+            tablaMarco[j] = new Marco();
+            for(int i=0;i<tablaMarco[j].localidadesMarco.length;i++){
+                tablaMarco[j].localidadesMarco[i]=inicioM;
+                inicioM++;
+            }
+        }
+    }
+    public void mostraTablaMarcos(){
+            for(int i=0; i<tablaMarco.length;i++){
+                System.out.println("\t  " +(i) + "\t\t  " +tablaMarco[i].pidP );
+            }
+    }
     public void tablaLocalidades(){
         if(ocupadas == 0){
             System.out.println("La tabla de memoria está vacía...");
@@ -84,6 +102,18 @@ public class Memoria {
     public void liberarMemoria(int base, int limite) {
         ponerMemoria(base, limite, 0);
     }
+
+    public void ponerMemoriaMarco(int indiceMarco, int agregarValor) {
+        tablaMarco[indiceMarco].pidP = agregarValor;
+    }
+
+    public void liberarMemoriaMarcos(Proceso p) {
+        for(int i=0;i<p.tablaPagina.length;i++){
+            ponerMemoriaMarco(p.tablaPagina[i], 0);
+            marcosDisponibles++;
+        }
+        actualizarMemoria();
+    }
     public int getLocalDesoc(){
         return this.numLocalidades - this.ocupadas;
     }
@@ -96,16 +126,61 @@ public class Memoria {
         }
         return bandera;
     }
+        public boolean verificarMarcosDisponibles(int cantPaginas){
+        boolean bandera = false;
+        if( marcosDisponibles >= cantPaginas){            
+            bandera = true;
+        }        
+        return bandera;
+    }
+
+    public int calcVaciosMarcos(int inicio) {
+        int marcosVacios = 0;
+        for (int j = inicio; j < 64; j++) {
+            if (tablaMarco[j].pidP == 0) {
+                marcosVacios++;
+            } else {
+                break;
+            }
+        }
+        return marcosVacios;
+    }
+
+    public int firstFitPaginas(Proceso proceso) {
+        int bandera = -1;
+        if (verificarMarcosDisponibles(proceso.tablaPagina.length)) {
+            for (int j = 0; j < proceso.tablaPagina.length; j++) {
+                for (int i = 0; i < 64; i++) {
+                    if (tablaMarco[i].pidP == 0) {
+                        tablaMarco[i].pidP = proceso.pid;
+                        System.out.println(tablaMarco[i].pidP);
+                        proceso.tablaPagina[j]=i;
+                        System.out.println(proceso.tablaPagina[j]);
+                        marcosDisponibles--;
+                        break;
+                    }
+                }
+            }
+            bandera =0;
+        }
+
+        System.out.println(bandera);
+        actualizarMemoria();
+        return bandera;
+    }
     public void quitarHueco(ColaProcesos cola) {
         int limite = 0;
         int base = 0;
-        for (int i = 0; i < numLocalidades; i++) {
+        //Encontrar el primer hueco
+        for (int i = 0; i < numLocalidades; i++) { 
             if (localidades[i] == 0) {
                 limite = calcVacios(i);
                 base = i;
                 break;
             }
         }
+        //Se hace el desplazamiento de lo que hay delante del hueco
+        //siempre y cuando haya mas elementos adelante
         if ((base + limite)  < numLocalidades) {
             for (int j = base; j < numLocalidades; j++) {
                 if (j + limite < numLocalidades) {
@@ -153,5 +228,13 @@ public class Memoria {
         return "Memoria - Num. localidades " + this.numLocalidades 
                 + " Local. ocupadas: "+ this.ocupadas +" Desocupadas " 
                 + this.getLocalDesoc();
+    }
+    
+    public void actualizarMemoria(){
+        for (Marco marco : tablaMarco) {
+            for(int i : marco.localidadesMarco){
+                localidades[i] = marco.pidP;
+            }
+        }
     }
 }
