@@ -7,5 +7,5 @@
 
 ## Autores
 
-- *Initial work* - [Brann7](https://github.com/Brann7/)
-- *Fork jrbeduardo* - [jrbeduardo](https://github.com/jrbeduardo/)
+- [Brann7](https://github.com/Brann7/)
+- [jrbeduardo](https://github.com/jrbeduardo/)
