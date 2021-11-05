@@ -1,7 +1,8 @@
 
 ## SIMULADOR DE PROCESOS Y MEMORIA
 
-<a href="url"><img src="http://turnoff.us/image/en/sql-server-on-linux.png" align="left" height="200"></a>
+<a href="url"><img src="http://turnoff.us/image/en/sql-server-on-linux.png" align="center" height="1000"></a>
+<br>
 
 **Objetivo.**
 - Implementar los conceptos del curso relacionados con procesos realizando una implementación que permita simular la ejecución de procesos en un sistema operativo.
