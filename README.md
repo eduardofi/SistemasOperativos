@@ -1,7 +1,7 @@
 
 ## SIMULADOR DE PROCESOS Y MEMORIA
 
-<a href="url"><img src="http://turnoff.us/image/en/sql-server-on-linux.png" align="center" height="7000"></a>
+<a href="url"><img src="http://turnoff.us/image/en/sql-server-on-linux.png" align="center" height="700"></a>
 <br>
 
 **Objetivo.**
