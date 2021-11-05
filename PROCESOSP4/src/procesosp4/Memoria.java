@@ -25,6 +25,7 @@ public class Memoria {
         }
     }
     public void mostraTablaMarcos(){
+         System.out.println("\t  Frame"  + "\t\t  Contents");
             for(int i=0; i<tablaMarco.length;i++){
                 System.out.println("\t  " +(i) + "\t\t  " +tablaMarco[i].pidP );
             }
@@ -153,9 +154,7 @@ public class Memoria {
                 for (int i = 0; i < 64; i++) {
                     if (tablaMarco[i].pidP == 0) {
                         tablaMarco[i].pidP = proceso.pid;
-                        System.out.println(tablaMarco[i].pidP);
                         proceso.tablaPagina[j]=i;
-                        System.out.println(proceso.tablaPagina[j]);
                         marcosDisponibles--;
                         break;
                     }
@@ -164,7 +163,6 @@ public class Memoria {
             bandera =0;
         }
 
-        System.out.println(bandera);
         actualizarMemoria();
         return bandera;
     }
@@ -172,27 +170,28 @@ public class Memoria {
         int limite = 0;
         int base = 0;
         //Encontrar el primer hueco
-        for (int i = 0; i < numLocalidades; i++) { 
-            if (localidades[i] == 0) {
-                limite = calcVacios(i);
+        for (int i = 0; i < tablaMarco.length; i++) { 
+            if (tablaMarco[i].pidP == 0) {
+                limite = calcVaciosMarcos(i);
                 base = i;
                 break;
             }
         }
         //Se hace el desplazamiento de lo que hay delante del hueco
         //siempre y cuando haya mas elementos adelante
-        if ((base + limite)  < numLocalidades) {
-            for (int j = base; j < numLocalidades; j++) {
-                if (j + limite < numLocalidades) {
-                    localidades[j] = localidades[j + limite];
-                    if ((localidades[j + limite] != 0) && (localidades[j + limite] != localidades[j + limite + 1])) {
-                        int pid = localidades[j + limite];
-                        cola.actualizaBaseProceso(pid, limite);
+        if ((base + limite)  < tablaMarco.length) {
+            for (int j = base; j < tablaMarco.length; j++) {
+                if (j + limite < tablaMarco.length) {
+                    tablaMarco[j].pidP = tablaMarco[j+ limite].pidP;
+                    if ((tablaMarco[j + limite].pidP != 0)
+                            && (tablaMarco[j + limite].pidP != tablaMarco[j + limite + 1].pidP)) {
+                        int pid = tablaMarco[j + limite].pidP;
+                        cola.actualizaTablaPagProcesos(pid, limite);
                     }
                 }
             }
-            for (int j = numLocalidades - limite; j < numLocalidades; j++) {
-                localidades[j] = 0;
+            for (int j = tablaMarco.length - limite; j < tablaMarco.length; j++) {
+                tablaMarco[j].pidP = 0;
             }
         }
         
@@ -203,20 +202,21 @@ public class Memoria {
         while(validarFragmentacion()){
             quitarHueco(cola);
         }
+        actualizarMemoria();
     }
     
     public boolean validarFragmentacion(){
         int limite = 0;
         int base = 0;
-        for(int i=0;i<numLocalidades;i++){
-            if(localidades[i]==0){
-                limite = calcVacios(i);
+        for(int i=0;i<tablaMarco.length;i++){
+            if(tablaMarco[i].pidP==0){
+                limite = calcVaciosMarcos(i);
                 base = i;
                 break;
             }
          }
          
-        if ( (base + limite)  < numLocalidades) {
+        if ( (base + limite)  < tablaMarco.length) {
             return true;
         } else {
             return false;
@@ -237,4 +237,5 @@ public class Memoria {
             }
         }
     }
+    
 }

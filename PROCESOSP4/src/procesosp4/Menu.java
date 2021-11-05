@@ -27,7 +27,8 @@ public class Menu {
             System.out.println("7. Ejecutar proceso");
             System.out.println("8. Ver estado de la memoria");
             System.out.println("9. Desfragmentar memoria");
-            System.out.println("10. Salir");
+            System.out.println("10. Mostrar memoria-marco");
+            System.out.println("11. Salir");
             System.out.print("Elige una opción: ");
             int op = new Scanner(System.in).nextInt();
             System.out.println("**********************************************");
@@ -57,10 +58,9 @@ public class Menu {
                    colap.tamañoCola();
                    colap.MostrarContenido();
                    colap.listaProcesosEliminados();
-
-                   //memory.tablaLocalidades();
-                   
-                   
+                    System.out.println("Lista ligada de Procesos - Huecos:");
+                   ligada.actualizarListaLigada(memory);
+                   ligada.MostrarContenido();
                    break; // break es opcional
                 case 3 :
                    colap.MostrarContenido();
@@ -90,7 +90,10 @@ public class Menu {
                     ligada.actualizarListaLigada(memory);
                     ligada.MostrarContenido();
                     break;
-                case 10 :
+                case 10:
+                    memory.mostraTablaMarcos();
+                    break;
+                case 11 :
                    System.out.println("Adios!");
                    System.out.println("\t Cola de procesos");
                    colap.MostrarContenido();

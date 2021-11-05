@@ -106,7 +106,7 @@ public class ColaProcesos {
              memory.liberarMemoriaMarcos(p);
             tamCola--;
             p.estado = Estado.TERMINADO.name();
-            p.base = -1;
+            //p.base = -1;
             listaProcesosEliminados.add(p);
             memory.ocupadas -= p.cantMemoria;
             return p;
@@ -121,14 +121,17 @@ public class ColaProcesos {
        }
    }
    
-   public void actualizaBaseProceso(int pid, int desplazamiento){
+   public void actualizaTablaPagProcesos(int pid, int desplazamiento){
         if(colaVacia()){
             System.out.println("Cola de procesos vacía :(");
         }else{
             NodoProceso recorrido = inicioCola;
             while (recorrido != null) {
                 if(pid==recorrido.proceso.pid){
-                    recorrido.proceso.base-=desplazamiento;
+                    Proceso p = recorrido.proceso;
+                    for (int pagina=0;pagina<p.tablaPagina.length;pagina++) {
+                        p.tablaPagina[pagina]-=desplazamiento;
+                    }
                     break;
                 }
                 recorrido = recorrido.siguiente;

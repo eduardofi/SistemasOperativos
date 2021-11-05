@@ -9,7 +9,7 @@ public class Proceso {
     int numInstrucciones;
     int numInstruccionesEjecutadas=0;
     String updateStatus;
-    int base;
+    //int base;
     int tablaPagina [];
     public Proceso(){}
     public Proceso(String nomProceso, int cantMemoria){
@@ -22,7 +22,6 @@ public class Proceso {
     
     static public Proceso crearProceso(String nombre, int cantMemoria, 
         int contador, Memoria memoria){
-        System.out.println("contador: "+contador);
         Proceso p = new Proceso(nombre, cantMemoria);
         System.out.println("cant. memoria: "+cantMemoria);
          p.pid = contador;
@@ -30,7 +29,7 @@ public class Proceso {
         if(ban != -1){
             System.out.println("Creando proceso ...");
             memoria.ocupadas +=cantMemoria;
-            p.base=ban;
+            //p.base=ban;
             return p;
         }else{
             System.out.println("Memoria llena, proceso "+ nombre 
@@ -48,12 +47,13 @@ public class Proceso {
     }
     @Override
     public String toString() {
-        return "Proceso - Nombre: " + this.nomProceso + " PID: "+ this.pid 
-                +" Estado " + this.estado + " Cant. Memoria "
+        return "Proceso - Name: " + this.nomProceso + " PID: "+ this.pid 
+                +" Estado " + this.estado + " Cant. Mem. "
                 + this.cantMemoria 
-                + " Num. instrucciones: "+ this.numInstrucciones 
-                + " Nun. instrucciones ejecutadas: "
-                + this.numInstruccionesEjecutadas + " Base: " +base;
+                + " Num. instruc.: "+ this.numInstrucciones 
+                + " Nun. instruc. execute: "
+                + this.numInstruccionesEjecutadas + " Num. de Pag.: " 
+                +tablaPagina.length;
     }
     
 }
