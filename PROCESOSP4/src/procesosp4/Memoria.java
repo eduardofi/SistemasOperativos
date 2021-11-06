@@ -7,6 +7,7 @@ public class Memoria {
     int ocupadas = 0;
     Marco tablaMarco [];
     int marcosDisponibles = 0;
+    
     public Memoria(int numLocalidades){
         this.numLocalidades = numLocalidades;
         this.localidades = new int[numLocalidades];
@@ -166,6 +167,9 @@ public class Memoria {
         actualizarMemoria();
         return bandera;
     }
+    
+    
+    
     public void quitarHueco(ColaProcesos cola) {
         int limite = 0;
         int base = 0;
@@ -194,8 +198,6 @@ public class Memoria {
                 tablaMarco[j].pidP = 0;
             }
         }
-        
-
     }
     
     public void desfragmentarMemoria(ColaProcesos cola){

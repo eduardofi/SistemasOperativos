@@ -58,9 +58,9 @@ public class Menu {
                    colap.tamañoCola();
                    colap.MostrarContenido();
                    colap.listaProcesosEliminados();
-                    System.out.println("Lista ligada de Procesos - Huecos:");
-                   ligada.actualizarListaLigada(memory);
-                   ligada.MostrarContenido();
+                   //System.out.println("Lista ligada de Procesos - Huecos:");
+                   //ligada.actualizarListaLigada(memory);
+                   //ligada.MostrarContenido();
                    break; // break es opcional
                 case 3 :
                    colap.MostrarContenido();
@@ -81,9 +81,10 @@ public class Menu {
                    colap.ejecutarProcesoAct(memory);
                    break; // break es opcional
                   case 8:
+                    System.out.println("Lista ligada de Procesos - Huecos:");
                     ligada.actualizarListaLigada(memory);
                     ligada.MostrarContenido();
-                    memory.mostraTablaMarcos();
+                    //memory.mostraTablaMarcos();
                     break;
                 case 9:
                     memory.desfragmentarMemoria(colap);
